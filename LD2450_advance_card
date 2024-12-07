@@ -1,0 +1,297 @@
+# this is very broken and only keepimg it here to remind me I have no idea what I'm doing.
+
+type: custom:plotly-graph
+refresh_interval: 1
+hours_to_show: current_day
+ha_theme: true
+layout:
+  legend:
+    "y": 7500
+    orientation: h
+  autosize: true
+  margin:
+    autoexpand: true
+    l: 50
+    r: 20
+    t: 20
+    b: 40
+  showlegend: true
+  xaxis:
+    dtick: 1300
+    gridcolor: RGBA(200,200,200,0.15)
+    zerolinecolor: RGBA(200,200,200,0.15)
+    type: number
+    fixedrange: true
+    range:
+      - -4000
+      - 4000
+  yaxis:
+    dtick: 800
+    gridcolor: RGBA(200,200,200,0.15)
+    zerolinecolor: RGBA(200,200,200,0.15)
+    scaleanchor: x
+    scaleratio: 1
+    fixedrange: true
+    range:
+      - 8000
+      - 0
+entities:
+  - entity: ""
+    name: Person1
+    show_value: true
+    unit_of_measurement: mm
+    marker:
+      size: 20
+    line:
+      shape: spline
+      width: 7
+    x:
+      - $ex hass.states["sensor.hlk_ld2450_ca2d_target_one_x"].state
+    "y":
+      - $ex hass.states["sensor.hlk_ld2450_ca2d_target_one_y"].state
+  - entity: ""
+    name: Person2
+    show_value: true
+    unit_of_measurement: mm
+    marker:
+      size: 20
+    line:
+      shape: spline
+      width: 7
+    x:
+      - $ex hass.states["sensor.hlk_ld2450_ca2d_target_two_x"].state
+    "y":
+      - $ex hass.states["sensor.hlk_ld2450_ca2d_target_two_y"].state
+  - entity: ""
+    name: Person3
+    show_value: true
+    unit_of_measurement: mm
+    marker:
+      size: 12
+    line:
+      shape: spline
+      width: 5
+    x:
+      - $ex hass.states["sensor.hlk_ld2450_ca2d_target_three_x"].state
+    "y":
+      - $ex hass.states["sensor.hlk_ld2450_ca2d_target_three_y"].state
+  - entity: ""
+    name: Zone1
+    mode: lines
+    fill: toself
+    fillcolor: >-
+      $ex hass.states["binary_sensor.hlk_ld2450_ca2d_presence"].state == "on" ?
+      "RGBA(0,250,0,0.4)" : "RGBA(0,250,0,0.1)"
+    line:
+      color: RGBA(0,250,0,0.9)
+      shape: line
+      width: 2
+    x:
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_one_first_vertex_x"].state*1
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_one_first_vertex_x"].state*1 +
+        hass.states["number.hlk_ld2450_ca2d_area_one_second_vertex_x"].state *
+        Math.cos((hass.states["input_number.number_hlk_ld2450_ca2d_angle"].state)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_one_first_vertex_x"].state*1 +
+        hass.states["number.hlk_ld2450_ca2d_area_one_second_vertex_x"].state *
+        Math.cos((hass.states["input_number.number_hlk_ld2450_ca2d_angle"].state)*3.1415/180)
+        + hass.states["number.hlk_ld2450_ca2d_area_one_second_vertex_y"].state *
+        Math.cos((hass.states["input_number.number_hlk_ld2450_ca2d_angle"].state*1-90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_one_first_vertex_x"].state*1 -
+        hass.states["number.hlk_ld2450_ca2d_area_one_second_vertex_y"].state *
+        Math.cos((hass.states["input_number.number_hlk_ld2450_ca2d_angle"].state*1-90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_one_first_vertex_x"].state*1
+    "y":
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_one_first_vertex_y"].state*1
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_one_first_vertex_y"].state*1 +
+        hass.states["number.hlk_ld2450_ca2d_area_one_second_vertex_x"].state *
+        Math.sin((hass.states["input_number.number_hlk_ld2450_ca2d_angle"].state)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_one_first_vertex_y"].state*1 +
+        hass.states["number.hlk_ld2450_ca2d_area_one_second_vertex_x"].state *
+        Math.sin((hass.states["input_number.number_hlk_ld2450_ca2d_angle"].state)*3.1415/180)
+        + hass.states["number.hlk_ld2450_ca2d_area_one_second_vertex_y"].state *
+        Math.sin((hass.states["input_number.number_hlk_ld2450_ca2d_angle"].state*1+90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_one_first_vertex_y"].state*1 +
+        hass.states["number.hlk_ld2450_ca2d_area_one_second_vertex_y"].state *
+        Math.sin((hass.states["input_number.number_hlk_ld2450_ca2d_angle"].state*1+90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_one_first_vertex_y"].state*1
+  - entity: ""
+    name: Zone2
+    mode: lines
+    fill: toself
+    fillcolor: >-
+      $ex hass.states["binary_sensor.hlk_ld2450_ca2d_two_target"].state == "on"
+      ? "RGBA(250,110,0,0.4)" : "RGBA(250,110,0,0.1)"
+    line:
+      color: RGBA(250,110,0,0.9)
+      shape: line
+      width: 2
+    x:
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_two_first_vertex_x"].state*1
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_two_first_vertex_x"].state*1 +
+        hass.states["number.hlk_ld2450_ca2d_area_two_second_vertex_x"].state *
+        Math.cos((hass.states["sensor.hlk_ld2450_ca2d_target_two_angle"].state)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_two_first_vertex_x"].state*1 +
+        hass.states["number.hlk_ld2450_ca2d_area_two_second_vertex_x"].state *
+        Math.cos((hass.states["sensor.hlk_ld2450_ca2d_target_two_angle"].state)*3.1415/180)
+        + hass.states["number.hlk_ld2450_ca2d_area_two_second_vertex_y"].state *
+        Math.cos((hass.states["sensor.hlk_ld2450_ca2d_target_two_angle"].state*1-90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_two_first_vertex_x"].state*1 -
+        hass.states["number.hlk_ld2450_ca2d_area_two_second_vertex_y"].state *
+        Math.cos((hass.states["sensor.hlk_ld2450_ca2d_target_two_angle"].state*1-90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_two_first_vertex_x"].state*1
+    "y":
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_two_first_vertex_y"].state*1
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_two_first_vertex_y"].state*1 +
+        hass.states["number.hlk_ld2450_ca2d_area_two_second_vertex_x"].state *
+        Math.sin((hass.states["sensor.hlk_ld2450_ca2d_target_two_angle"].state)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_two_first_vertex_y"].state*1 +
+        hass.states["number.hlk_ld2450_ca2d_area_two_second_vertex_x"].state *
+        Math.sin((hass.states["sensor.hlk_ld2450_ca2d_target_two_angle"].state)*3.1415/180)
+        + hass.states["number.hlk_ld2450_ca2d_area_two_second_vertex_y"].state *
+        Math.sin((hass.states["sensor.hlk_ld2450_ca2d_target_two_angle"].state*1+90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_two_first_vertex_y"].state*1 +
+        hass.states["number.hlk_ld2450_ca2d_area_two_second_vertex_y"].state *
+        Math.sin((hass.states["sensor.hlk_ld2450_ca2d_target_two_angle"].state*1+90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_two_first_vertex_y"].state*1
+  - entity: ""
+    name: Zone3
+    mode: lines
+    fill: toself
+    fillcolor: >-
+      $ex hass.states["binary_sensor.hlk_ld2450_ca2d_three_target"].state ==
+      "on" ? "RGBA(0,0,250,0.4)" : "RGBA(0,0,250,0.1)"
+    line:
+      color: RGBA(0,0,250,0.9)
+      shape: line
+      width: 2
+    x:
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_three_first_vertex_x"].state*1
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_three_first_vertex_x"].state*1
+        + hass.states["number.hlk_ld2450_ca2d_area_three_second_vertex_x"].state
+        *
+        Math.cos((hass.states["sensor.hlk_ld2450_ca2d_target_three_angle"].state)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_three_first_vertex_x"].state*1
+        + hass.states["number.hlk_ld2450_ca2d_area_three_second_vertex_x"].state
+        *
+        Math.cos((hass.states["sensor.hlk_ld2450_ca2d_target_three_angle"].state)*3.1415/180)
+        + hass.states["number.hlk_ld2450_ca2d_area_three_second_vertex_y"].state
+        *
+        Math.cos((hass.states["sensor.hlk_ld2450_ca2d_target_three_angle"].state*1-90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_three_first_vertex_x"].state*1
+        - hass.states["number.hlk_ld2450_ca2d_area_three_second_vertex_y"].state
+        *
+        Math.cos((hass.states["sensor.hlk_ld2450_ca2d_target_three_angle"].state*1-90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_three_first_vertex_x"].state*1
+    "y":
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_three_first_vertex_y"].state*1
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_three_first_vertex_y"].state*1
+        + hass.states["number.hlk_ld2450_ca2d_area_three_second_vertex_x"].state
+        *
+        Math.sin((hass.states["sensor.hlk_ld2450_ca2d_target_three_angle"].state)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_three_first_vertex_y"].state*1
+        + hass.states["number.hlk_ld2450_ca2d_area_three_second_vertex_x"].state
+        *
+        Math.sin((hass.states["sensor.hlk_ld2450_ca2d_target_three_angle"].state)*3.1415/180)
+        + hass.states["number.hlk_ld2450_ca2d_area_three_second_vertex_y"].state
+        *
+        Math.sin((hass.states["sensor.hlk_ld2450_ca2d_target_three_angle"].state*1+90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_three_first_vertex_y"].state*1
+        + hass.states["number.hlk_ld2450_ca2d_area_three_second_vertex_y"].state
+        *
+        Math.sin((hass.states["sensor.hlk_ld2450_ca2d_target_three_angle"].state*1+90)*3.1415/180)
+      - >-
+        $ex
+        hass.states["number.hlk_ld2450_ca2d_area_three_first_vertex_y"].state*1  
+  - entity: ""
+    name: Coverage
+    mode: lines
+    line:
+      width: 2
+      color: rgba(100, 100, 100, .6)
+      dash: dot
+    x:
+      - 0
+      - 1500
+      - 5500
+      - 6000
+      - 2500
+      - 0
+      - -2500
+      - -6000
+      - -5500
+      - -1500
+      - 0
+    "y":
+      - 0
+      - 500
+      - 2400
+      - 4600
+      - 6900
+      - 7500
+      - 6900
+      - 4600
+      - 2400
+      - 500
+      - 0
+raw_plotly_config: true
+cards:
+  - type: heading
+    heading: Office - LD2450
