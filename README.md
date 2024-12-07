@@ -12,8 +12,9 @@ Despite the previous statement, I would still recommend using a Bluetooth proxy 
  
 # The following code requires installation of the Plotly Graph Card from HACS in Home Assistant.
 
-To use this card, add the custom HACS integration [Plotly Graph](https://my.home-assistant.io/redirect/hacs_repository/?repository=lovelace-plotly-graph-card&owner=dbuezas&category=Plugin)
+To use this card, add the custom HACS integration [Plotly Graph](https://my.home-assistant.io/redirect/hacs_repository/?repository=lovelace-plotly-graph-card&owner=dbuezas&category=Plugin).
 
+Create a new card in HA, then copy and paste the code below:
 
 ```shell
 type: custom:plotly-graph
@@ -281,3 +282,6 @@ Replace "ca2d" with the mac address of your device
 # brief explanation on how zones work:
 
 https://github.com/lazarbankovic/hilink-ld2450/blob/main/include/Ld2450.h#L119-L140
+
+
+https://github.com/user-attachments/files/17895167/hlk_ld2450_serial_communication.pdf
